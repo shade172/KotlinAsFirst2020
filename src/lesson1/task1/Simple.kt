@@ -62,10 +62,15 @@ fun main() {
  *
  * Задача имеет повышенную стоимость как первая в списке.
  *
- * Пользователь задает время в часах, минутах и секундах, например, 8:20:35.
+ * Пользователь задает время в часах, минутах и секундах, например, 8:230:5.
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
-fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
+fun seconds(hours: Int, minutes: Int, seconds: Int): Int {
+    val x1 = hours * 60 * 60
+    val x2 = minutes * 60
+    val x3 = seconds * 1
+    return x1 + x2 + x3
+}
 
 /**
  * Тривиальная (1 балл)
@@ -74,7 +79,13 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
  * Определить длину того же отрезка в метрах (в данном случае 18.98).
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
-fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = TODO()
+fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double {
+    val x1 = 4.445 / 100
+    val x2 = sagenes * 48 * x1
+    val x3 = arshins * 16 * x1
+    val x4 = vershoks * x1
+    return x2 + x3 + x4
+}
 
 /**
  * Тривиальная (1 балл)
@@ -82,7 +93,13 @@ fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = TODO()
  * Пользователь задает угол в градусах, минутах и секундах (например, 36 градусов 14 минут 35 секунд).
  * Вывести значение того же угла в радианах (например, 0.63256).
  */
-fun angleInRadian(deg: Int, min: Int, sec: Int): Double = TODO()
+fun angleInRadian(deg: Int, min: Int, sec: Int): Double {
+    val x1 = sec.toDouble() / 60
+    val x2 = min.toDouble() + x1
+    val x3 = x2 / 60
+    val x4 = deg.toDouble() + x3
+    return (x4 * PI) / 180
+}
 
 /**
  * Тривиальная (1 балл)
@@ -91,9 +108,9 @@ fun angleInRadian(deg: Int, min: Int, sec: Int): Double = TODO()
  * Например, расстояние между (3, 0) и (0, 4) равно 5
  */
 fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double {
-    val a = abs(x1-x2)
-    val b = abs(y1-y2)
-    val c = a*a + b*b
+    val a = abs(x1 - x2)
+    val b = abs(y1 - y2)
+    val c = a * a + b * b
     return sqrt(c)
 }
 
@@ -103,7 +120,10 @@ fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double {
  * Пользователь задает целое число, большее 100 (например, 3801).
  * Определить третью цифру справа в этом числе (в данном случае 8).
  */
-fun thirdDigit(number: Int): Int = TODO()
+fun thirdDigit(number: Int): Int {
+    val x1 = number / 100
+    return x1 % 10
+}
 
 /**
  * Простая (2 балла)
@@ -112,7 +132,11 @@ fun thirdDigit(number: Int): Int = TODO()
  * прибыл на станцию назначения в h2 часов m2 минут того же дня (например в 13:01).
  * Определите время поезда в пути в минутах (в данном случае 216).
  */
-fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int = TODO()
+fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int  {
+    val h1m1 = hoursDepart * 60 + minutesDepart
+    val h2m2 = hoursArrive * 60 + minutesArrive
+    return h2m2 - h1m1
+}
 
 /**
  * Простая (2 балла)
@@ -121,7 +145,12 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  * Сколько денег будет на счету через 3 года (с учётом сложных процентов)?
  * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
  */
-fun accountInThreeYears(initial: Int, percent: Int): Double = TODO()
+fun accountInThreeYears(initial: Int, percent: Int): Double {
+    val yearOne = initial.toDouble() + percent
+    val yearTwo = yearOne + percent
+    return yearTwo + percent
+
+}
 
 /**
  * Простая (2 балла)
