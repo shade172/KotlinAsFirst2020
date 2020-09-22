@@ -3,6 +3,7 @@
 package lesson2.task2
 
 import lesson1.task1.sqr
+import java.lang.Math.sqrt
 
 /**
  * Пример
@@ -60,7 +61,7 @@ fun circleInside(
     x2: Double, y2: Double, r2: Double
 ): Boolean {
     return when {
-        sqr(x2 - x1) + sqr(y2 - y1) == sqr(r2 - r1) -> true
+        sqrt(sqr(x2 - x1) + sqr(y2 - y1)) + r1 <= r2 -> true
         else -> false
     }
 }

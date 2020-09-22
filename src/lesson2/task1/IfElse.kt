@@ -88,12 +88,7 @@ fun timeForHalfWay(
     t1: Double, v1: Double,
     t2: Double, v2: Double,
     t3: Double, v3: Double
-): Double {
-    val wayOne = t1 * v1
-    val wayTwo = t2 * v2
-    val wayThree = t3 * v3
-    return (wayOne + wayTwo + wayThree) / 2
-}
+): Double = TODO()
 
 /**
  * Простая (2 балла)
@@ -135,15 +130,7 @@ fun rookOrBishopThreatens(
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int {
-    return when {
-        sqr(c) < sqr(a) + sqr(b) -> 0
-        sqr(c) == sqr(a) + sqr(b) -> 1
-        sqr(c) > sqr(a) + sqr(b) -> 2
-        ((a + b > c) and (a + c > b) and (b + c > a)) -> -1
-        else -> -1
-    }
-}
+fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
 
 
 
