@@ -3,7 +3,8 @@
 package lesson2.task2
 
 import lesson1.task1.sqr
-import java.lang.Math.sqrt
+import java.lang.Math.*
+import javax.management.Query.or
 
 /**
  * Пример

@@ -132,7 +132,7 @@ fun thirdDigit(number: Int): Int {
  * прибыл на станцию назначения в h2 часов m2 минут того же дня (например в 13:01).
  * Определите время поезда в пути в минутах (в данном случае 216).
  */
-fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int  {
+fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int {
     val h1m1 = hoursDepart * 60 + minutesDepart
     val h2m2 = hoursArrive * 60 + minutesArrive
     return h2m2 - h1m1
@@ -149,8 +149,7 @@ fun accountInThreeYears(initial: Int, percent: Int): Double {
     val yearOne = initial.toDouble()
     val yearTwo = yearOne + (yearOne / 100 * percent)
     val yearThree = yearTwo + (yearTwo / 100 * percent)
-    val yearInfinity = yearThree + (yearThree / 100 * percent)
-    return  yearInfinity
+    return yearThree + (yearThree / 100 * percent)
 
 }
 
