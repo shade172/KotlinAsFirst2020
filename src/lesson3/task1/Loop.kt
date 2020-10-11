@@ -2,6 +2,10 @@
 
 package lesson3.task1
 
+import lesson1.task1.sqr
+import java.lang.Math.abs
+import java.lang.Math.pow
+import kotlin.math.pow
 import kotlin.math.sqrt
 
 // Урок 3: циклы
@@ -72,7 +76,18 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
+fun digitNumber(n: Int): Int {
+    var sum = 0
+    var number = n
+    if (number == 0) sum++
+    while (number > 0) {
+        if (n % 10 >= 0) {
+            sum++
+        }
+        number /= 10
+    }
+    return sum
+}
 
 /**
  * Простая (2 балла)
@@ -80,14 +95,24 @@ fun digitNumber(n: Int): Int = TODO()
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+fun fib(n: Int): Int =
+    if (n == 1 || n == 2) 1 else (fib(n - 1) + fib(n - 2))
 
 /**
  * Простая (2 балла)
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int = TODO()
+fun minDivisor(n: Int): Int {
+    var divider = 0
+        for (i in 2..n) {
+            if (n % i == 0) {
+                divider = i
+                break
+            }
+        }
+    return divider
+}
 
 /**
  * Простая (2 балла)
@@ -112,7 +137,18 @@ fun maxDivisor(n: Int): Int = TODO()
  * Написать функцию, которая находит, сколько шагов требуется для
  * этого для какого-либо начального X > 0.
  */
-fun collatzSteps(x: Int): Int = TODO()
+fun collatzSteps(x: Int): Int {
+    var sum = 0
+    while (x > 1) {
+        sum++
+        if (x % 2 == 0) {
+            (x / 2)
+        }
+        else ((3 * x) + 1)
+        if (x == 1) break
+    }
+    return sum
+}
 
 /**
  * Средняя (3 балла)
@@ -120,7 +156,16 @@ fun collatzSteps(x: Int): Int = TODO()
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun lcm(m: Int, n: Int): Int = TODO()
+fun lcm(m: Int, n: Int): Int {
+    var number = 0
+    for (k in 1..Int.MAX_VALUE) {
+        if (k % m == 0 && k % n == 0) {
+            number = k
+            break
+        }
+    }
+    return number
+}
 
 /**
  * Средняя (3 балла)
@@ -138,7 +183,12 @@ fun isCoPrime(m: Int, n: Int): Boolean = TODO()
  * то есть, существует ли такое целое k, что m <= k*k <= n.
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
-fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
+fun squareBetweenExists(m: Int, n: Int): Boolean {
+    for (i in 1..n+1) {
+        if (sqr(i) in m..n) return true
+    }
+    return false
+}
 
 /**
  * Средняя (3 балла)
@@ -202,6 +252,7 @@ fun cos(x: Double, eps: Double): Double = TODO()
  * Использовать операции со строками в этой задаче запрещается.
  */
 fun squareSequenceDigit(n: Int): Int = TODO()
+
 
 /**
  * Сложная (5 баллов)

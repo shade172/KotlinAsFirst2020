@@ -65,12 +65,8 @@ fun main() {
  * Пользователь задает время в часах, минутах и секундах, например, 8:230:5.
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
-fun seconds(hours: Int, minutes: Int, seconds: Int): Int {
-    val x1 = hours * 60 * 60
-    val x2 = minutes * 60
-    val x3 = seconds * 1
-    return x1 + x2 + x3
-}
+fun seconds(hours: Int, minutes: Int, seconds: Int): Int = (hours * 60 * 60) + (minutes * 60) + seconds
+
 
 /**
  * Тривиальная (1 балл)
@@ -80,11 +76,8 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int {
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
 fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double {
-    val x1 = 4.445 / 100
-    val x2 = sagenes * 48 * x1
-    val x3 = arshins * 16 * x1
-    val x4 = vershoks * x1
-    return x2 + x3 + x4
+    val meter = 4.445 / 100
+    return (sagenes * 48 * meter) + (arshins * 16 * meter) + (vershoks * meter)
 }
 
 /**
@@ -94,11 +87,11 @@ fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double {
  * Вывести значение того же угла в радианах (например, 0.63256).
  */
 fun angleInRadian(deg: Int, min: Int, sec: Int): Double {
-    val x1 = sec / 60.0
-    val x2 = min + x1
-    val x3 = x2 / 60.0
-    val x4 = deg + x3
-    return (x4 * PI) / 180.0
+    val minutesOne = sec / 60.0
+    val minutes = min + minutesOne
+    val degreeOne = minutes / 60.0
+    val degree = deg + degreeOne
+    return degree * PI / 180.0
 }
 
 /**
@@ -108,9 +101,9 @@ fun angleInRadian(deg: Int, min: Int, sec: Int): Double {
  * Например, расстояние между (3, 0) и (0, 4) равно 5
  */
 fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double {
-    val a = abs(x1 - x2)
-    val b = abs(y1 - y2)
-    val c = a * a + b * b
+    val a = x1 - x2
+    val b = y1 - y2
+    val c = sqr(a) + sqr(b)
     return sqrt(c)
 }
 
@@ -150,7 +143,6 @@ fun accountInThreeYears(initial: Int, percent: Int): Double {
     val yearTwo = yearOne + (yearOne / 100 * percent)
     val yearThree = yearTwo + (yearTwo / 100 * percent)
     return yearThree + (yearThree / 100 * percent)
-
 }
 
 /**
