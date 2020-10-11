@@ -80,8 +80,8 @@ fun digitNumber(n: Int): Int {
     var sum = 0
     var number = n
     if (number == 0) sum++
-    while (number > 0) {
-        if (n % 10 >= 0) {
+    while (number != 0) {
+        if (abs(n) % 10 >= 0) {
             sum++
         }
         number /= 10
@@ -184,7 +184,7 @@ fun isCoPrime(m: Int, n: Int): Boolean = TODO()
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean {
-    for (i in 0..n+1) {
+    for (i in -1..n+1) {
         if (sqr(i) in m..n) return true
     }
     return false
@@ -197,7 +197,19 @@ fun squareBetweenExists(m: Int, n: Int): Boolean {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
+fun revert(n: Int): Int {
+    var number = n
+    var numbOne = 0
+    var numbTwo = 0
+    if (number == 0) return 0
+    while (number != 0) {
+        numbTwo = abs(number) % 10
+        number /= 10
+        numbOne *= 10
+        numbOne += numbTwo
+    }
+    return numbOne
+}
 
 /**
  * Средняя (3 балла)
