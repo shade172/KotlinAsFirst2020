@@ -109,21 +109,21 @@ fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> = TODO()
  *   containsIn(mapOf("a" to "z"), mapOf("a" to "zee", "b" to "sweet")) -> false
  */
 fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean = TODO()
+    /**
+     * Простая (2 балла)
+     *
+     * Удалить из изменяемого ассоциативного массива все записи,
+     * которые встречаются в заданном ассоциативном массиве.
+     * Записи считать одинаковыми, если и ключи, и значения совпадают.
+     *
+     * ВАЖНО: необходимо изменить переданный в качестве аргумента
+     *        изменяемый ассоциативный массив
+     *
+     * Например:
+     *   subtractOf(a = mutableMapOf("a" to "z"), mapOf("a" to "z"))
+     *     -> a changes to mutableMapOf() aka becomes empty
+     */
 
-/**
- * Простая (2 балла)
- *
- * Удалить из изменяемого ассоциативного массива все записи,
- * которые встречаются в заданном ассоциативном массиве.
- * Записи считать одинаковыми, если и ключи, и значения совпадают.
- *
- * ВАЖНО: необходимо изменить переданный в качестве аргумента
- *        изменяемый ассоциативный массив
- *
- * Например:
- *   subtractOf(a = mutableMapOf("a" to "z"), mapOf("a" to "z"))
- *     -> a changes to mutableMapOf() aka becomes empty
- */
 fun subtractOf(a: MutableMap<String, String>, b: Map<String, String>) {
     TODO()
 }

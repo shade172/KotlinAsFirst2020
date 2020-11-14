@@ -3,7 +3,9 @@
 package lesson4.task1
 
 import lesson1.task1.discriminant
+import lesson1.task1.main
 import lesson1.task1.sqr
+import kotlin.math.pow
 import kotlin.math.sqrt
 
 // Урок 4: списки
@@ -123,7 +125,8 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  */
 fun abs(v: List<Double>): Double {
     if (v.isEmpty()) return 0.0
-    return sqrt(sqr(v.sum()))
+    val result = v.map {it * it}
+    return sqrt(result.sum())
 }
 
 /**
@@ -144,7 +147,12 @@ fun mean(list: List<Double>): Double {
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun center(list: MutableList<Double>): MutableList<Double> = TODO()
+fun center(list: MutableList<Double>): MutableList<Double> {
+    val average = list.sum() / list.size
+    for (i in 0 until list.size)
+        list[i] -= average
+    return list
+}
 
 /**
  * Средняя (3 балла)
@@ -155,6 +163,7 @@ fun center(list: MutableList<Double>): MutableList<Double> = TODO()
  */
 fun times(a: List<Int>, b: List<Int>): Int = TODO()
 
+
 /**
  * Средняя (3 балла)
  *
@@ -163,7 +172,15 @@ fun times(a: List<Int>, b: List<Int>): Int = TODO()
  * Коэффициенты многочлена заданы списком p: (p0, p1, p2, p3, ..., pN).
  * Значение пустого многочлена равно 0 при любом x.
  */
-fun polynom(p: List<Int>, x: Int): Int = TODO()
+fun polynom(p: List<Int>, x: Int): Int {
+    var polynomialN = 0
+    val numb = x.toDouble()
+    if (p.isEmpty()) return 0
+    for (i in 1 until p.size) {
+        polynomialN += p[i] * numb.pow(i).toInt()
+    }
+    return p[0] + polynomialN
+}
 
 /**
  * Средняя (3 балла)
@@ -175,7 +192,12 @@ fun polynom(p: List<Int>, x: Int): Int = TODO()
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun accumulate(list: MutableList<Int>): MutableList<Int> = TODO()
+fun accumulate(list: MutableList<Int>): MutableList<Int> {
+    for (i in 1 until list.size) {
+        list[i] += list[i - 1]
+    }
+    return list
+}
 
 /**
  * Средняя (3 балла)
@@ -184,7 +206,19 @@ fun accumulate(list: MutableList<Int>): MutableList<Int> = TODO()
  * Результат разложения вернуть в виде списка множителей, например 75 -> (3, 5, 5).
  * Множители в списке должны располагаться по возрастанию.
  */
-fun factorize(n: Int): List<Int> = TODO()
+fun factorize(n: Int): List<Int> {
+    var number = n
+    var numb = 2
+    val result = mutableListOf<Int>()
+    while (number > 1) {
+        if (number % numb == 0) {
+            result.add(numb)
+            number /= numb
+        }
+        else numb++
+    }
+    return result
+}
 
 /**
  * Сложная (4 балла)
@@ -193,7 +227,7 @@ fun factorize(n: Int): List<Int> = TODO()
  * Результат разложения вернуть в виде строки, например 75 -> 3*5*5
  * Множители в результирующей строке должны располагаться по возрастанию.
  */
-fun factorizeToString(n: Int): String = TODO()
+fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*")
 
 /**
  * Средняя (3 балла)
@@ -248,7 +282,26 @@ fun decimalFromString(str: String, base: Int): Int = TODO()
  * 90 = XC, 100 = C, 400 = CD, 500 = D, 900 = CM, 1000 = M.
  * Например: 23 = XXIII, 44 = XLIV, 100 = C
  */
-fun roman(n: Int): String = TODO()
+fun roman(n: Int): String = when {
+n == 0 -> ""
+n < 4 -> "I" + roman(n - 1)
+n == 4 -> "IV"
+n in 5..8 -> "V" + roman(n - 5)
+n == 9 -> "IX"
+n in 10..39 -> "X" + roman(n - 10)
+n in 40..49 -> "XL" + roman(n - 40)
+n in 50..89 -> "L" + roman(n - 50)
+n in 90..99 -> "XC" + roman(n - 90)
+n in 100..399 -> "C" + roman(n - 100)
+n in 400..499 -> "CD" + roman(n - 400)
+n in 500..899 -> "D" + roman(n - 500)
+n in 900..999 -> "CM" + roman(n - 900)
+n in 1000..1999 -> "M" + roman(n - 1000)
+n in 2000..2999 -> "MM" + roman(n - 2000)
+n in 3000..3999 -> "MMM" + roman(n - 3000)
+n in 4000..4999 -> "MV" + roman(n - 4000)
+else -> "Syntax Error"
+}
 
 /**
  * Очень сложная (7 баллов)
@@ -257,4 +310,54 @@ fun roman(n: Int): String = TODO()
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
-fun russian(n: Int): String = TODO()
+fun russian(n: Int): String = when (n) {
+    0 -> ""
+    1 -> "один "
+    2 -> "два "
+    3 -> "три "
+    4 -> "четыре "
+    5 -> "пять "
+    6 -> "шесть "
+    7 -> "семь "
+    8 -> "восемь "
+    9 -> "девять "
+    10 -> "десять "
+    11 -> "одиннадцать "
+    12 -> "двенадцать "
+    13 -> "тринадцать "
+    14 -> "четырнадцать "
+    15 -> "пятнадцать "
+    16 -> "шестнадцать "
+    17 -> "семнадцать "
+    18 -> "восемнадцать "
+    19 -> "девятнадцать "
+    in 20..29 -> "двадцать " + russian(n - 20)
+    in 30..39 -> "тридцать " + russian(n - 30)
+    in 40..49 -> "сорок " + russian(n - 40)
+    in 50..59 -> "пятьдесят " + russian(n - 50)
+    in 60..69 -> "шестьдесят " + russian(n - 60)
+    in 70..79 -> "семьдесят " + russian(n - 70)
+    in 80..89 -> "восемьдесят " + russian(n - 80)
+    in 90..99 -> "девяносто " + russian(n - 90)
+    in 100..199 -> "сто " + russian(n - 100)
+    in 200..299 -> "двести " + russian(n - 200)
+    in 300..399 -> "триста " + russian(n - 300)
+    in 400..499 -> "четыреста " + russian(n - 400)
+    in 500..599 -> "пятьсот " + russian(n - 500)
+    in 600..699 -> "шестьсот " + russian(n - 600)
+    in 700..799 -> "семьсот " + russian(n - 700)
+    in 800..899 -> "восемьсот " + russian(n - 800)
+    in 900..999 -> "девятьсот " + russian(n - 900)
+    in 1000..999999 -> when (n / 1000) {
+        1 -> "одна тысяча " + russian(n - 1000)
+        2 -> "две тысячи " + russian(n - 2000)
+        3 -> "три тысячи " + russian(n - 3000)
+        4 -> "четыре тысячи " + russian(n - 4000)
+        in 5..9 -> russian(n / 1000) + " тысяч " + russian(n % 1000)
+        in 10..19 -> russian(n / 1000) + " тысяч " + russian(n % 1000)
+        in 20..99 -> russian((n / 10000) * 10) + (if (n % 10000 < 1000) " тысяч " else " ") + russian(n % 10000)
+        in 100..999999 -> russian((n / 100000) * 100) + (if (n % 100000 < 1000) " тысяч " else " ") + russian(n % 100000)
+        else -> "Syntax Error"
+    }
+    else -> "Syntax Error"
+}

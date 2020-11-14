@@ -4,8 +4,6 @@ package lesson3.task1
 
 import lesson1.task1.sqr
 import java.lang.Math.abs
-import java.lang.Math.pow
-import kotlin.math.pow
 import kotlin.math.sqrt
 
 // Урок 3: циклы
@@ -105,12 +103,12 @@ fun fib(n: Int): Int =
  */
 fun minDivisor(n: Int): Int {
     var divider = 0
-        for (i in 2..n) {
-            if (n % i == 0) {
-                divider = i
-                break
-            }
+    for (i in 2..n) {
+        if (n % i == 0) {
+            divider = i
+            break
         }
+    }
     return divider
 }
 
@@ -142,7 +140,7 @@ fun collatzSteps(x: Int): Int {
     while (x > 1) {
         sum++
         if (x % 2 == 0) {
-            (x / 2)
+            x / 2
         }
         else ((3 * x) + 1)
         if (x == 1) break
@@ -184,7 +182,7 @@ fun isCoPrime(m: Int, n: Int): Boolean = TODO()
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean {
-    for (i in -1..n+1) {
+    for (i in -1..n + 1) {
         if (sqr(i) in m..n) return true
     }
     return false

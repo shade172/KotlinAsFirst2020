@@ -65,7 +65,7 @@ fun main() {
  * Пользователь задает время в часах, минутах и секундах, например, 8:230:5.
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
-fun seconds(hours: Int, minutes: Int, seconds: Int): Int = (hours * 60 * 60) + (minutes * 60) + seconds
+fun seconds(hours: Int, minutes: Int, seconds: Int): Int = hours * sqr(60) + minutes * 60 + seconds
 
 
 /**
@@ -77,7 +77,7 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int = (hours * 60 * 60) + (
  */
 fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double {
     val meter = 4.445 / 100
-    return (sagenes * 48 * meter) + (arshins * 16 * meter) + (vershoks * meter)
+    return sagenes * 48 * meter + arshins * 16 * meter + vershoks * meter
 }
 
 /**
