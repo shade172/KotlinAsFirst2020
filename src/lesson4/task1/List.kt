@@ -360,4 +360,4 @@ fun russian(n: Int): String = when (n) {
         else -> "Syntax Error"
     }
     else -> "Syntax Error"
-}
+}.trim()
