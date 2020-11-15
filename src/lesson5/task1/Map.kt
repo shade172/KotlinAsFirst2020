@@ -109,6 +109,8 @@ fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> = TODO()
  *   containsIn(mapOf("a" to "z"), mapOf("a" to "zee", "b" to "sweet")) -> false
  */
 fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean = TODO()
+
+
     /**
      * Простая (2 балла)
      *
@@ -135,7 +137,15 @@ fun subtractOf(a: MutableMap<String, String>, b: Map<String, String>) {
  * В выходном списке не должно быть повторяюихся элементов,
  * т. е. whoAreInBoth(listOf("Марат", "Семён, "Марат"), listOf("Марат", "Марат")) == listOf("Марат")
  */
-fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = TODO()
+fun whoAreInBoth(a: List<String>, b: List<String>): List<String> {
+    val set1 = a.toSet()
+    val set2 = b.toSet()
+    val result = mutableListOf<String>()
+    for (element in set1) {
+        if (element in set2) result.add(element)
+    }
+    return result
+}
 
 /**
  * Средняя (3 балла)
@@ -194,7 +204,13 @@ fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): S
  * Например:
  *   canBuildFrom(listOf('a', 'b', 'o'), "baobab") -> true
  */
-fun canBuildFrom(chars: List<Char>, word: String): Boolean = TODO()
+fun canBuildFrom(chars: List<Char>, word: String): Boolean {
+    val wordOne = word.toLowerCase().toSet()
+    val charsOne = chars.joinToString(separator = "").toLowerCase().toSet().toMutableSet()
+    for (i in wordOne)
+        if (i !in charsOne) return false
+    return true
+}
 
 /**
  * Средняя (4 балла)

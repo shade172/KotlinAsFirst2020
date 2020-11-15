@@ -3,7 +3,7 @@
 package lesson3.task1
 
 import lesson1.task1.sqr
-import java.lang.Math.abs
+import kotlin.math.abs
 import kotlin.math.sqrt
 
 // Урок 3: циклы
@@ -77,11 +77,9 @@ fun digitCountInNumber(n: Int, m: Int): Int =
 fun digitNumber(n: Int): Int {
     var sum = 0
     var number = n
-    if (number == 0) sum++
-    while (number != 0) {
-        if (abs(n) % 10 >= 0) {
-            sum++
-        }
+    if (number == 0) return 1
+    while (number != 0 && abs(n) % 10 >= 0) {
+        sum++
         number /= 10
     }
     return sum
@@ -102,14 +100,11 @@ fun fib(n: Int): Int =
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
 fun minDivisor(n: Int): Int {
-    var divider = 0
-    for (i in 2..n) {
+    for (i in 2..n)
         if (n % i == 0) {
-            divider = i
-            break
+            return i
         }
-    }
-    return divider
+    return n
 }
 
 /**
@@ -156,7 +151,7 @@ fun collatzSteps(x: Int): Int {
  */
 fun lcm(m: Int, n: Int): Int {
     var number = 0
-    for (k in 1..Int.MAX_VALUE) {
+    for (k in 1..m * n) {
         if (k % m == 0 && k % n == 0) {
             number = k
             break
@@ -182,7 +177,7 @@ fun isCoPrime(m: Int, n: Int): Boolean = TODO()
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean {
-    for (i in -1..n + 1) {
+    for (i in 0..n + 1) {
         if (sqr(i) in m..n) return true
     }
     return false
@@ -198,10 +193,9 @@ fun squareBetweenExists(m: Int, n: Int): Boolean {
 fun revert(n: Int): Int {
     var number = n
     var numbOne = 0
-    var numbTwo = 0
     if (number == 0) return 0
     while (number != 0) {
-        numbTwo = abs(number) % 10
+        var numbTwo = abs(number) % 10
         number /= 10
         numbOne *= 10
         numbOne += numbTwo
