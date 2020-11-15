@@ -133,13 +133,12 @@ fun maxDivisor(n: Int): Int = TODO()
  */
 fun collatzSteps(x: Int): Int {
     var sum = 0
-    while (x > 1) {
+    var numb = x
+    while (numb != 1) {
+        if (numb % 2 == 0)
+            numb /= 2
+        else numb = 3 * numb + 1
         sum++
-        if (x % 2 == 0) {
-            x / 2
-        }
-        else ((3 * x) + 1)
-        if (x == 1) break
     }
     return sum
 }
@@ -155,7 +154,7 @@ fun lcm(m: Int, n: Int): Int {
     for (k in 1..m * n) {
         if (k % m == 0 && k % n == 0) {
             number = k
-            break
+            return number
         }
     }
     return number
