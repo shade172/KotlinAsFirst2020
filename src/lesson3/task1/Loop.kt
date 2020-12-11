@@ -4,6 +4,7 @@ package lesson3.task1
 
 import lesson1.task1.sqr
 import kotlin.math.abs
+import kotlin.math.min
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -92,8 +93,18 @@ fun digitNumber(n: Int): Int {
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int =
-    if (n == 1 || n == 2) 1 else (fib(n - 1) + fib(n - 2))
+fun fib(n: Int): Int {
+    var fibOne = 0
+    var fibTwo = 1
+    var numb = 2
+    while (numb <= n) {
+        val fibN = fibOne + fibTwo
+        fibOne = fibTwo
+        fibTwo = fibN
+        numb++
+    }
+    return fibTwo
+}
 
 /**
  * Простая (2 балла)
@@ -101,7 +112,7 @@ fun fib(n: Int): Int =
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
 fun minDivisor(n: Int): Int {
-    for (i in 2..n)
+    for (i in 2..sqrt(n.toDouble()).toInt())
         if (n % i == 0) {
             return i
         }
@@ -149,16 +160,23 @@ fun collatzSteps(x: Int): Int {
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun lcm(m: Int, n: Int): Int {
-    var number = 0
-    for (k in 1..m * n) {
-        if (k % m == 0 && k % n == 0) {
-            number = k
-            return number
+fun lcm(m: Int, n: Int): Int = gcd(m, n)
+
+fun gcd(m: Int, n: Int): Int {
+    var m1 = m
+    var n1 = n
+    var a = 0
+    if (m == n) return m
+    while (m1 != 0 || n1 != 0) {
+        if (m1 % n1 == 0 || n1 % m1 == 0) {
+            a = min(m1, n1)
+            break
         }
+        if (n1 > m1) n1 %= m1 else m1 %= n1
     }
-    return number
+    return m * n / a
 }
+
 
 /**
  * Средняя (3 балла)
@@ -177,7 +195,7 @@ fun isCoPrime(m: Int, n: Int): Boolean = TODO()
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean {
-    for (i in 0..n + 1) {
+    for (i in sqrt(m.toDouble()).toInt()..sqrt(n.toDouble()).toInt()) {
         if (sqr(i) in m..n) return true
     }
     return false
@@ -195,7 +213,7 @@ fun revert(n: Int): Int {
     var numbOne = 0
     if (number == 0) return 0
     while (number != 0) {
-        var numbTwo = abs(number) % 10
+        val numbTwo = abs(number) % 10
         number /= 10
         numbOne *= 10
         numbOne += numbTwo

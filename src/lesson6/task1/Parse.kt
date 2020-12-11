@@ -115,17 +115,14 @@ fun flattenPhoneNumber(phone: String): String = TODO()
  * При нарушении формата входной строки или при отсутствии в ней чисел, вернуть -1.
  */
 fun bestLongJump(jumps: String): Int? {
-    val check = Regex("[%\\-]")
-    val res = jumps.split(" ")
-    val num = mutableListOf<Int>()
-    for (element in res) {
-        try {
-            if (element.toInt() > 0) num.add(element.toInt()) else return -1
-        } catch (e: Exception) {
-            if (element.contains(check)) continue else return -1
-        }
+    val separate = Regex("""[ %\-]""").split(jumps)
+    var numb = -1
+    if (!"$jumps ".matches(Regex("""^((\d+|%|-)\s)*$"""))) return -1
+    for (i in 0 until separate.size) {
+        if (separate[i] != "" && separate[i].toInt() > numb)
+            numb = separate[i].toInt()
     }
-    return if (num.size == 0) -1 else num.maxOrNull()
+    return numb
 }
 
 /**
@@ -140,21 +137,14 @@ fun bestLongJump(jumps: String): Int? {
  * вернуть -1.
  */
 fun bestHighJump(jumps: String): Int? {
-    val check = Regex("[-+%]")
-    val res = jumps.split(" ")
-    val num = mutableListOf<Int>()
-    for (element in res) {
-        try {
-            if (element.toInt() > 0) num.add(element.toInt()) else return -1
-        } catch (e: Exception) {
-            for (el in element) {
-                if (element.contains(check)) continue else return -1
-            }
-            if (!element.contains("+")) num.removeLastOrNull()
-            continue
-        }
+    val separate = Regex("""[ ]""").split(jumps)
+    var numb = -1
+    if (!"$jumps ".matches(Regex("""^(\d+\s([+\-%])+\s)*$"""))) return -1
+    for (i in 0 until separate.size - 1) {
+        if (separate[i].matches(Regex("""^\d+$""")) && separate[i + 1].contains("+") && separate[i].toInt() > numb)
+            numb = separate[i].toInt()
     }
-    return if (num.size == 0) -1 else num.maxOrNull()
+    return numb
 }
 
 /**
