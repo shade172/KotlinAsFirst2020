@@ -114,7 +114,7 @@ fun flattenPhoneNumber(phone: String): String = TODO()
  * Прочитать строку и вернуть максимальное присутствующее в ней число (717 в примере).
  * При нарушении формата входной строки или при отсутствии в ней чисел, вернуть -1.
  */
-fun bestLongJump(jumps: String): Int? {
+fun bestLongJump(jumps: String): Int {
     val separate = Regex("""[ %\-]""").split(jumps)
     var numb = -1
     if (!"$jumps ".matches(Regex("""^((\d+|%|-)\s)*$"""))) return -1
@@ -136,7 +136,7 @@ fun bestLongJump(jumps: String): Int? {
  * При нарушении формата входной строки, а также в случае отсутствия удачных попыток,
  * вернуть -1.
  */
-fun bestHighJump(jumps: String): Int? {
+fun bestHighJump(jumps: String): Int {
     val separate = Regex("""[ ]""").split(jumps)
     var numb = -1
     if (!"$jumps ".matches(Regex("""^(\d+\s([+\-%])+\s)*$"""))) return -1
@@ -167,7 +167,15 @@ fun plusMinus(expression: String): Int = TODO()
  * Вернуть индекс начала первого повторяющегося слова, или -1, если повторов нет.
  * Пример: "Он пошёл в в школу" => результат 9 (индекс первого 'в')
  */
-fun firstDuplicateIndex(str: String): Int = TODO()
+fun firstDuplicateIndex(str: String): Int {
+    val spisok = Regex("""[ ]""").split(str)
+    var res = 0
+    for (i in 0 until spisok.size - 1) {
+        if (spisok[i].toLowerCase() == spisok[i + 1].toLowerCase()) return res
+        else res += spisok[i].length + 1
+    }
+    return -1
+}
 
 /**
  * Сложная (6 баллов)

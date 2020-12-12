@@ -92,11 +92,11 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
  *
  */
 fun sibilants(inputName: String, outputName: String) {
-    val vocabulary = setOf('ж', 'ч', 'ш', 'щ', 'Ж', 'Ч', 'Ш', 'Щ')
+    val vocabulary = setOf('ж', 'ч', 'ш', 'щ')
     File(outputName).bufferedWriter().use {
         var Change: Boolean
         for (line in File(inputName).readLines()) {
-            Change = true
+            Change = false
             for (char in line) {
                 var str = char
                 if (Change) {
@@ -110,7 +110,7 @@ fun sibilants(inputName: String, outputName: String) {
                         else -> char
                     }
                 }
-                Change = vocabulary.contains(char)
+                Change = vocabulary.contains(char.toLowerCase())
                 it.write("$str")
             }
             it.newLine()
@@ -242,7 +242,18 @@ fun top20Words(inputName: String): Map<String, Int> = TODO()
  * Обратите внимание: данная функция не имеет возвращаемого значения
  */
 fun transliterate(inputName: String, dictionary: Map<Char, String>, outputName: String) {
-    TODO()
+    val splinter = mutableMapOf<Char, String>()
+    File(outputName).bufferedWriter().use {
+        for ((key, value) in dictionary)
+            splinter[key.toLowerCase()] = value.toLowerCase()
+        for (char in File(inputName).readText()) {
+            if (splinter.containsKey(char.toLowerCase())) {
+                if (char.isUpperCase()) it.write(splinter[char.toLowerCase()]!!.capitalize())
+                else it.write(splinter[char]!!)
+            }
+            else it.write(char.toString())
+        }
+    }
 }
 
 /**
